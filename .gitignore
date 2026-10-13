@@ -1,0 +1,14 @@
+.DS_Store
+# 构建产物 | build outputs
+dm/host/dmhost
+dm/host/dmhost.dSYM/
+dm/gfx/tests/t_*
+!dm/gfx/tests/t_*.c
+!dm/gfx/tests/t_*.m
+dm/gfx/tools/dmsh_xlate/bin/
+dm/gfx/tools/dmsh_xlate/obj/
+dm/ios_bringup/Gen/
+dm/ios_bringup/*.xcodeproj/
+# 本机配置（设备号、签名） | local configuration (device IDs, signing)
+dm/ios_bringup/local.env
+__pycache__/

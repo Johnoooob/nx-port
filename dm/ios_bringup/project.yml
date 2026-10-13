@@ -1,0 +1,54 @@
+# 另一个游戏的最小 iOS 外壳（试启动）。由 build.sh 生成 Gen/ 后用 xcodegen 出工程；免费账号可签（不带任何额外权限）。
+# Minimal iOS shell for another game (bring-up). build.sh generates Gen/ and then xcodegen produces the project; signable with a free account (no extra entitlements).
+name: BringupIOS
+options:
+  bundleIdPrefix: ${BU_BUNDLE_ID}
+  deploymentTarget:
+    iOS: "26.0"
+configFiles:
+  Release: Gen/dm.xcconfig
+  Debug: Gen/dm.xcconfig
+targets:
+  BringupIOS:
+    type: application
+    platform: iOS
+    sources:
+      - Sources
+      - path: Gen/embed.S
+      - path: Gen/dm
+        type: folder
+        buildPhase: resources
+      - path: Gen/msl
+        type: folder
+        buildPhase: resources
+      - path: Gen/src
+      - path: Gen/main/main.c
+        compilerFlags: "-Dmain=dm_main"
+    info:
+      path: Gen/Info.plist
+      properties:
+        CFBundleDisplayName: Bringup
+        UILaunchStoryboardName: ""
+        UIFileSharingEnabled: true
+        LSSupportsOpeningDocumentsInPlace: true
+        UISupportedInterfaceOrientations: [UIInterfaceOrientationLandscapeRight, UIInterfaceOrientationLandscapeLeft]
+        UIRequiresFullScreen: true
+        UIStatusBarHidden: true
+        UIViewControllerBasedStatusBarAppearance: false
+        LSApplicationCategoryType: public.app-category.games
+        LSSupportsGameMode: true
+        CADisableMinimumFrameDurationOnPhone: true
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: ${BU_BUNDLE_ID}
+      DEVELOPMENT_TEAM: ${DM_TEAM_ID}
+      CODE_SIGN_STYLE: Automatic
+      TARGETED_DEVICE_FAMILY: "1,2"
+      ENABLE_BITCODE: NO
+      GCC_C_LANGUAGE_STANDARD: gnu11
+      OTHER_CFLAGS: $(inherited) -mcpu=apple-a18
+      CLANG_ENABLE_OBJC_ARC: YES
+      DEBUG_INFORMATION_FORMAT: dwarf
+      MARKETING_VERSION: "0.1"
+      CURRENT_PROJECT_VERSION: "1"

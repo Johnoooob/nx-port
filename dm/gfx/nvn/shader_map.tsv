@@ -1,0 +1,2 @@
+# kind: placeholder  着色器映射表由 dm/gfx/tools/dmsh_dump_build.py 按导出的着色器生成到工作目录（宿主用 DM_NVN_SHMAP 指过去）；本文件只为翻译链版本计算而存在
+package	index	stage	dm_ctl_sha16	pc_dxbc_sha16	metallib
